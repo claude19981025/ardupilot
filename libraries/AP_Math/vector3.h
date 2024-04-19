@@ -69,19 +69,20 @@ template <typename T>
 class Vector2;
 
 template <typename T>
-class Vector3
+class Vector3 //基本上成員就是x, y, z
 {
 
 public:
     T        x, y, z;
 
-    // trivial ctor
+    // trivial ctor = constructor
+    //
     constexpr Vector3<T>()
         : x(0)
         , y(0)
         , z(0) {}
 
-    // setting ctor
+    // setting ctor 正常的建構元，三個成員都要是同一種資料類別
     constexpr Vector3<T>(const T x0, const T y0, const T z0)
         : x(x0)
         , y(y0)
@@ -93,6 +94,8 @@ public:
         , y(v0.y)
         , z(z0) {}
 
+
+    //運算子的多載，括號內是運算子右邊要放的東西
     // test for equality
     bool operator ==(const Vector3<T> &v) const;
 
@@ -127,6 +130,7 @@ public:
     Vector3<T> &operator /=(const T num);
 
     // non-uniform scaling
+    // 支持對每個向量元素進行scaling
     Vector3<T> &operator *=(const Vector3<T> &v) {
         x *= v.x; y *= v.y; z *= v.z;
         return *this;
